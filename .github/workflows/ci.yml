@@ -12,8 +12,8 @@ jobs:
     name: 백엔드 테스트
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: '20'
       - name: 의존성 설치
@@ -36,8 +36,8 @@ jobs:
     name: 프론트엔드 타입체크·빌드
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: '20'
       - name: 의존성 설치
@@ -54,8 +54,8 @@ jobs:
     name: 스마트 컨트랙트 테스트
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: '20'
       - name: 의존성 설치
@@ -72,7 +72,7 @@ jobs:
     name: 시크릿 유출 검사
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: .env 커밋 여부 확인
         run: |
           FOUND=$(git ls-files | grep -E '(^|/)\.env($|\.)' | grep -v '\.example$' || true)
