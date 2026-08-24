@@ -1,0 +1,93 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop, frontend, backend, blockchain]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+jobs:
+  backend:
+    name: 백엔드 테스트
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: 의존성 설치
+        working-directory: server
+        run: npm install --no-audit --no-fund
+      - name: 테스트 실행
+        working-directory: server
+        # DB가 없는 CI에서는 동시성 테스트가 자동으로 건너뛰어진다 (75 pass / 8 skip).
+        env:
+          JWT_SECRET: ci-test-secret
+          QR_SECRET: ci-test-secret
+          DB_HOST: 127.0.0.1
+          DB_PORT: '59999'
+          TOSS_MODE: mock
+          FABRIC_MODE: mock
+          ENABLE_ONCHAIN_MINTING: 'false'
+        run: npm test
+
+  frontend:
+    name: 프론트엔드 타입체크·빌드
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: 의존성 설치
+        working-directory: Proje
+        run: npm install --no-audit --no-fund
+      - name: 타입 검사
+        working-directory: Proje
+        run: npm run typecheck
+      - name: 프로덕션 빌드
+        working-directory: Proje
+        run: npm run build
+
+  contracts:
+    name: 스마트 컨트랙트 테스트
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: 의존성 설치
+        working-directory: blockchain
+        run: npm install --no-audit --no-fund
+      - name: 컨트랙트 컴파일
+        working-directory: blockchain
+        run: npm run compile
+      - name: 컨트랙트 테스트
+        working-directory: blockchain
+        run: npm test
+
+  secret-scan:
+    name: 시크릿 유출 검사
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: .env 커밋 여부 확인
+        run: |
+          FOUND=$(git ls-files | grep -E '(^|/)\.env($|\.)' | grep -v '\.example$' || true)
+          if [ -n "$FOUND" ]; then
+            echo "::error::.env 파일이 저장소에 커밋되어 있습니다:"
+            echo "$FOUND"
+            exit 1
+          fi
+          echo "✅ .env 커밋 없음"
+      - name: 하드코딩된 키 패턴 확인
+        run: |
+          HITS=$(git grep -nIE '0x[a-fA-F0-9]{64}' -- $(git ls-files | grep -v package-lock.json) || true)
+          if [ -n "$HITS" ]; then
+            echo "::error::프라이빗 키로 보이는 문자열이 발견되었습니다:"
+            echo "$HITS"
+            exit 1
+          fi
+          echo "✅ 프라이빗 키 패턴 없음"

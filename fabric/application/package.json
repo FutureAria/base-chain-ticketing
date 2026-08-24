@@ -1,0 +1,17 @@
+{
+  "name": "ticket-fabric-application",
+  "version": "1.0.0",
+  "description": "Hyperledger Fabric SDK application for TicketBlockChain",
+  "main": "sdk/enrollAdmin.js",
+  "scripts": {
+    "enroll-admin": "node sdk/enrollAdmin.js",
+    "register-user": "node sdk/registUser.js"
+  },
+  "dependencies": {
+    "fabric-ca-client": "^2.2.20",
+    "fabric-network": "^2.2.20"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

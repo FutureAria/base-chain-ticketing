@@ -1,0 +1,8 @@
+node_modules/
+.env
+.env.*
+!.env.example
+
+# 사용자가 올린 공지 이미지 — 런타임 데이터라 저장소에 두지 않는다.
+uploads/
+!uploads/.gitkeep

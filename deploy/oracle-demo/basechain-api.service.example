@@ -1,0 +1,24 @@
+[Unit]
+Description=BASE CHAIN Demo API
+After=network.target mysql.service
+
+[Service]
+Type=simple
+User=basechain
+Group=basechain
+WorkingDirectory=/opt/basechain/server
+EnvironmentFile=/opt/basechain/server/.env
+ExecStart=/usr/bin/node /opt/basechain/server/index.js
+Restart=always
+RestartSec=5
+
+# Keep Oracle demo lightweight and predictable.
+MemoryMax=384M
+NoNewPrivileges=true
+PrivateTmp=true
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

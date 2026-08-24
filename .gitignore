@@ -1,0 +1,17 @@
+node_modules/
+.env
+.env.*
+!.env.example
+!**/.env.example
+package-lock.json
+
+# Oracle demo build artifacts are generated locally for deployment.
+deploy/oracle-demo/out/
+*.tar.gz
+
+# Fabric 생성 파일 (VM에서 생성됨, git에 포함 불필요)
+fabric/application/wallet/
+fabric/basic-network/organizations/ordererOrganizations/
+fabric/basic-network/organizations/peerOrganizations/
+fabric/basic-network/system-genesis-block/
+fabric/basic-network/channel-artifacts/

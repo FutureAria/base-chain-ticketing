@@ -1,0 +1,40 @@
+# 기본: 텍스트 파일은 LF
+* text=auto eol=lf
+
+# 셸 스크립트: 반드시 LF (Linux VM 실행용)
+*.sh text eol=lf
+
+# Go 파일
+*.go text eol=lf
+*.mod text eol=lf
+*.sum text eol=lf
+
+# 설정 파일
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+*.env text eol=lf
+
+# 웹 소스
+*.js text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.jsx text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+
+# Windows 전용은 CRLF 유지
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# 바이너리: 변환 안 함
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.tar binary
+*.gz binary
