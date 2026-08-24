@@ -73,7 +73,7 @@ function playTavernRumble() {
     pGain.connect(ctx.destination);
     punch.start(ctx.currentTime + 0.45);
     punch.stop(ctx.currentTime + 1.0);
-  } catch (_) { /* audio API unavailable */ }
+  } catch { /* Web Audio API 미지원 브라우저에서는 효과음을 생략한다 */ }
 }
 
 // ── Web Speech: find deepest male Korean voice ──
@@ -138,7 +138,7 @@ function speakTavernKeeper() {
     } else {
       doSpeak();
     }
-  } catch (_) { /* TTS unavailable */ }
+  } catch { /* TTS 미지원 환경에서는 음성 안내를 생략한다 */ }
 }
 
 const RAY_COUNT = 18;

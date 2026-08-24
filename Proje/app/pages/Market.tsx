@@ -201,9 +201,16 @@ export function Market() {
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
   const [submitError, setSubmitError] = useState<SubmitError>(null);
   const [recentlyListedId, setRecentlyListedId] = useState<string | null>(null);
+  // ⚠️ 아래 두 상태는 JSX 에서 읽히지만(구매 영수증·품절 안내) setter 가 어디에서도 호출되지 않는다.
+  // 즉 해당 UI 는 현재 절대 렌더링되지 않는다. 구매 성공/품절 처리 경로에 연결이 빠져 있다.
+  // 지우지 않는 이유 — 표시할 내용과 위치가 이미 잡혀 있어 연결만 하면 되기 때문이다.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- 미연결 UI. 이슈로 추적한다.
   const [purchaseReceipt, setPurchaseReceipt] = useState<{ fragmentId: string; sellerName: string; price: number } | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- 미연결 UI. 이슈로 추적한다.
   const [soldOutNotice, setSoldOutNotice] = useState<{ fragmentId: string; sellerName: string; price: number } | null>(null);
   const [isPurchasing, setIsPurchasing] = useState(false);
+  // ⚠️ setSalesHistory 로 채워지지만 salesHistory 를 읽는 화면이 없다 — 판매 이력이 표시되지 않는다.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- 미표시 데이터. 이슈로 추적한다.
   const [salesHistory, setSalesHistory] = useState<SaleHistoryItem[]>([]);
 
   const [showBuyModal, setShowBuyModal]           = useState(false);

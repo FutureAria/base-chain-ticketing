@@ -37,7 +37,10 @@ export function QRScanner({ onScan, onError }: QRScannerProps) {
       .catch((err) => console.error("[QRScanner] start failed:", err));
 
     return () => {
-      scanner.isScanning && scanner.stop().catch(() => {});
+      // 스캔 중일 때만 정지시킨다. 이미 멈춘 스캐너에 stop() 을 부르면 예외가 난다.
+      if (scanner.isScanning) {
+        scanner.stop().catch(() => {});
+      }
     };
   }, []);
 

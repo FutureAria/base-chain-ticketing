@@ -157,7 +157,7 @@ async function completeRefund({ refundId, ticketId }) {
 
 // ─── 9. CancelGameRefundAll ──────────────────────────────
 // 경기 취소 시 전체 티켓 환불: Fabric에서 범위 조회 후 루프
-async function cancelGameRefundAll({ gameId }) {
+async function cancelGameRefundAll({ gameId: _gameId }) {
   // Phase 2: 서버 측에서 DB 티켓 목록 받아 개별 RequestRefund 호출
   // raffleRoutes/settlementRoutes에서 티켓 목록을 조회해 개별 호출하는 방식으로 처리
   throw new Error('cancelGameRefundAll: 호출자에서 티켓별 requestRefund를 개별 호출하세요');

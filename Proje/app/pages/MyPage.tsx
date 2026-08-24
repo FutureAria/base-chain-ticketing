@@ -11,9 +11,7 @@ import {
   Bookmark,
   ChevronRight,
   Store,
-  Settings2,
   ExternalLink,
-  History,
 } from "lucide-react";
 import { GiBaseballBat, GiBaseballGlove } from "react-icons/gi";
 import { FaBaseballBall, FaTrophy } from "react-icons/fa";
