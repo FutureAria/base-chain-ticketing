@@ -1,0 +1,74 @@
+name: 🐛 버그 신고
+description: 동작이 예상과 다를 때
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        보안 취약점은 여기 올리지 마세요 → [비공개 제보](https://github.com/FutureAria/base-chain-ticketing/security/advisories/new)
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 어느 영역인가요
+      options:
+        - 프론트엔드 (Proje/)
+        - 백엔드 (server/)
+        - 스마트 컨트랙트 (blockchain/)
+        - Fabric 체인코드 (fabric/)
+        - 배포·인프라
+        - 모르겠음
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: 무슨 일이 일어났나요
+      description: 화면이나 로그가 있으면 함께 붙여 주세요.
+      placeholder: 좌석을 선택하고 결제했는데 내 입장권에 안 보입니다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 무엇을 기대했나요
+      placeholder: 결제 완료 후 내 입장권 목록에 티켓이 떠야 합니다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 재현 순서
+      description: 한 줄에 한 단계씩. 이게 가장 중요합니다.
+      value: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+
+  - type: textarea
+    id: env
+    attributes:
+      label: 환경
+      value: |
+        - Node.js 버전: 
+        - DB: MySQL 8 / MariaDB 10.6 / 없음
+        - 브라우저: 
+        - TOSS_MODE / FABRIC_MODE / ENABLE_ONCHAIN_MINTING: 
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 확인
+      options:
+        - label: 시크릿(.env 값, 키, 비밀번호)을 본문에 넣지 않았습니다
+          required: true
+        - label: 같은 내용의 이슈가 이미 있는지 검색했습니다
+          required: true

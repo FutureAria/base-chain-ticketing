@@ -1,0 +1,55 @@
+name: ✨ 기능 제안
+description: 새 기능이나 개선 아이디어
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        먼저 [ROADMAP.md](https://github.com/FutureAria/base-chain-ticketing/blob/main/ROADMAP.md)를 봐 주세요.
+        이미 계획에 있거나, **하지 않기로 한 것**에 들어 있을 수 있습니다.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 어떤 문제를 겪고 계신가요
+      description: 해결책이 아니라 **문제**를 먼저 적어 주세요.
+      placeholder: 좌석을 고를 때 그 등급에 몇 자리 남았는지 알 수 없어서, 눌러 봐야 매진인 걸 압니다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: 어떻게 하면 좋을까요
+      placeholder: 좌석 등급 버튼에 잔여석 수를 함께 표시.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 영향 범위
+      multiple: true
+      options:
+        - 프론트엔드 (Proje/)
+        - 백엔드 (server/)
+        - 스마트 컨트랙트 (blockchain/)
+        - Fabric 체인코드 (fabric/)
+        - 문서
+    validations:
+      required: true
+
+  - type: textarea
+    id: risk
+    attributes:
+      label: 걱정되는 점
+      description: 상태 정합성·성능·보안에 영향이 있다면 적어 주세요. 없으면 비워 두셔도 됩니다.
+      placeholder: 잔여석을 매 요청마다 세면 좌석 조회가 느려질 수 있습니다.
+
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: 직접 만들어 보시겠어요?
+      options:
+        - label: 제가 PR을 보내보고 싶습니다

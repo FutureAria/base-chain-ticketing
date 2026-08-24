@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 🔒 보안 취약점 제보
+    url: https://github.com/FutureAria/base-chain-ticketing/security/advisories/new
+    about: 공개 이슈로 올리지 말고 비공개로 알려 주세요.
+  - name: 📖 기여 가이드
+    url: https://github.com/FutureAria/base-chain-ticketing/blob/main/CONTRIBUTING.md
+    about: 개발 환경 준비부터 PR까지 절차가 정리돼 있습니다.
+  - name: 🗺 로드맵
+    url: https://github.com/FutureAria/base-chain-ticketing/blob/main/ROADMAP.md
+    about: 계획된 작업과 하지 않기로 한 것.
