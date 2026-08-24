@@ -672,7 +672,7 @@ router.post('/tier-up', requireAuth, async (req, res) => {
       });
     }
 
-    const { reward, awardedCards, issuedRaffleNftIds } = await claimTierReward({
+    const { awardedCards, issuedRaffleNftIds } = await claimTierReward({
       userId: req.user.user_id,
       walletAddress,
       tier: nextTier,

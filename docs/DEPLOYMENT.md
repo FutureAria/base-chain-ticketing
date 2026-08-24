@@ -67,7 +67,7 @@ cd ../blockchain && npm ci && npm test
 cd ../Proje      && npm ci && npm run build
 ```
 
-기대 결과: 백엔드 78개 · 컨트랙트 18개 통과, 프론트 타입오류 0.
+기대 결과: 백엔드 83개 · 컨트랙트 18개 통과, 프론트 타입오류 0.
 
 ---
 
