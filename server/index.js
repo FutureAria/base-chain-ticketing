@@ -131,7 +131,11 @@ async function start() {
         seedWallets.push(row.wallet_address);
       }
     }
-  } catch (_) {}
+  } catch (err) {
+    // 시드 지갑 조회는 실패해도 서버 기동을 막지 않는다. 다만 조용히 넘어가면
+    // "왜 데모 계정에 포인트가 없지"를 추적할 수 없으므로 이유는 남긴다.
+    console.warn('[startup] 시드 지갑 조회 실패 — 기본 목록으로 진행합니다:', err.message);
+  }
   for (const walletAddress of seedWallets) {
     await mockFabric.seedUser({
       walletAddress,

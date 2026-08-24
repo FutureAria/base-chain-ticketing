@@ -69,7 +69,7 @@ async function markNftUsed(tokenId) {
 /**
  * NFT 소각 요청 (burn 없음 → markUsed로 처리)
  */
-async function requestNftBurn(tokenId, walletAddress) {
+async function requestNftBurn(tokenId, _walletAddress) {
   return markNftUsed(tokenId);
 }
 

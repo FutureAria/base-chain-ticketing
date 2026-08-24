@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Check, Gift, Sparkles, Calendar, Flame, Key, Package } from "lucide-react";
+import { ChevronLeft, ChevronRight, Check, Gift, Sparkles, Calendar, Flame } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Card } from "../components/ui/card";
 
@@ -336,7 +336,6 @@ export function Attendance() {
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
             {STREAK_REWARDS.map((r) => {
               const reached  = streak >= r.streak;
-              const isCurrent = streak < r.streak && (!STREAK_REWARDS.find(x => x.streak > streak && x.streak < r.streak));
               const isNext   = nextMilestone?.streak === r.streak;
               return (
                 <motion.div

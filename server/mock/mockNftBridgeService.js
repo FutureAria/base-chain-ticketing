@@ -43,7 +43,7 @@ async function markNftUsed(tokenId) {
  * TicketNFT.sol에 burn 함수가 없으므로 현재는 markUsed로 대체
  * 이벤트만 Fabric에 기록하고 실제 burn은 추후 팀원 코드와 연결
  */
-async function requestNftBurn(tokenId, walletAddress) {
+async function requestNftBurn(tokenId, _walletAddress) {
   console.log(`[MockNFT] requestNftBurn: tokenId=${tokenId} (burn 함수 없음, markUsed 대체)`);
   return { requested: true, note: 'TicketNFT에 burn 함수 없음 - markUsed로 처리' };
 }

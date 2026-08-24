@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { Star, Ticket, RefreshCw, AlertCircle, Loader2, ChevronRight } from "lucide-react";
+import { Star, RefreshCw, AlertCircle, Loader2, ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router";
 import { Button } from "../components/ui/button";

@@ -1,6 +1,6 @@
 const express = require('express');
 const crypto  = require('crypto');
-const { getAddress, verifyMessage } = require('ethers');
+const { verifyMessage } = require('ethers');
 const { requireAuth, optionalAuth } = require('../middleware/auth');
 const fabricService = require('../services/fabricBridge');
 const { confirmPayment, cancelPayment } = require('../services/tossPayService');
