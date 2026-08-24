@@ -111,7 +111,8 @@ test('프론트 가격표와 서버 가격표가 일치한다', () => {
   }
 
   const source = fs.readFileSync(ticketingPath, 'utf-8');
-  const gradePattern = /\n        id: "[^"]+",\n        name: "([^"]+)",\n(?:.*\n)*?        price: (\d+),/g;
+  // 공백 8칸을 그대로 쓰면 세기 어려워 {8} 로 표기한다 (매칭 대상은 동일).
+  const gradePattern = /\n {8}id: "[^"]+",\n {8}name: "([^"]+)",\n(?:.*\n)*? {8}price: (\d+),/g;
 
   const frontendPrices = {};
   for (const match of source.matchAll(gradePattern)) {

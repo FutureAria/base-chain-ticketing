@@ -332,8 +332,8 @@ router.post("/purchase", requireAuth, requireVerifiedDidForWallet, async (req, r
     });
 
     // 티켓 구매 성공 시 → 지갑 주소로 user_id 조회 후 시즌 박스 1개 지급
-    let ticketTokenId = null;
-    let ticketTxHash  = null;
+    const ticketTokenId = null;
+    const ticketTxHash  = null;
 
     // Fabric 티켓 등록 + 예약 레코드 생성 (실패해도 구매 자체는 성공 처리)
     try {
@@ -589,7 +589,11 @@ router.post("/toss/confirm", requireAuth, requireVerifiedDidForWallet, async (re
     try {
       const result = await fabricService.getPointBalance({ userDidHash });
       pointBalance = result.balance ?? 0;
-    } catch (_) {}
+    } catch (err) {
+      // 조회 실패 시 잔액 0으로 간주해 결제를 막는다(안전한 쪽으로 실패).
+      // 사용자에게는 "잔액 부족"으로 보이므로, 원인은 반드시 로그에 남긴다.
+      console.warn('[ticket] 포인트 잔액 조회 실패 — 0으로 간주합니다:', err.message);
+    }
     if (pointBalance < pd) {
       return res.status(400).json({
         success: false,
