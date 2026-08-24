@@ -259,7 +259,8 @@ router.post('/cancel-game', requireAuth, requireAdmin, async (req, res) => {
     );
 
     // Fabric 일괄 환불
-    const fabricResult = await fabricService.cancelGameRefundAll({ gameId });
+    // 반환값은 쓰지 않는다. 실패하면 예외가 올라와 아래 응답까지 가지 않는다.
+    await fabricService.cancelGameRefundAll({ gameId });
 
     let completedCount = 0;
     for (const ticket of tickets) {

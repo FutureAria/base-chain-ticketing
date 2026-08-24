@@ -1,12 +1,34 @@
+/**
+ * 스키마 드리프트 보정.
+ *
+ * 운영 DB 는 이미 데이터가 들어 있어 통째로 다시 만들 수 없다. 그래서 코드가 기대하는
+ * 컬럼·테이블이 실제 DB 에 있는지 **서버 기동 시 확인하고, 없으면 그때 붙인다.**
+ *
+ * 규칙 — 여기서는 **추가만 한다.** 컬럼을 지우거나 타입을 바꾸는 변경은 넣지 않는다.
+ * 자동으로 도는 코드가 데이터를 잃게 만들면 안 되기 때문이다.
+ * 되돌릴 수 없는 변경이 필요하면 사람이 직접 실행하는 마이그레이션으로 뺀다.
+ */
 'use strict';
 
+/** 프로세스당 1회만 실행하기 위한 플래그. 요청마다 SHOW COLUMNS 를 돌리지 않는다. */
 let runtimeSchemaReady = false;
 
+/**
+ * 테이블의 컬럼 이름 집합을 읽는다.
+ * @param {import('mysql2/promise').Pool} pool
+ * @param {string} tableName 테이블 이름
+ * @returns {Promise<Set<string>>} 컬럼 이름 집합
+ */
 async function columnSet(pool, tableName) {
   const [columns] = await pool.query(`SHOW COLUMNS FROM ${tableName}`);
   return new Set(columns.map((column) => column.Field));
 }
 
+/**
+ * `users` 에 나중에 추가된 컬럼(role·마지막 로그인 정보)이 없으면 붙인다.
+ * @param {import('mysql2/promise').Pool} pool
+ * @returns {Promise<void>}
+ */
 async function ensureUsersRuntimeColumns(pool) {
   const columns = await columnSet(pool, 'users');
   const alters = [];
@@ -27,6 +49,11 @@ async function ensureUsersRuntimeColumns(pool) {
   }
 }
 
+/**
+ * `user_cards` 의 표시용 스냅샷 컬럼이 없으면 붙인다.
+ * @param {import('mysql2/promise').Pool} pool
+ * @returns {Promise<void>}
+ */
 async function ensureUserCardsRuntimeColumns(pool) {
   const columns = await columnSet(pool, 'user_cards');
   const alters = [];
@@ -50,6 +77,11 @@ async function ensureUserCardsRuntimeColumns(pool) {
   }
 }
 
+/**
+ * `raffle_nfts.source` ENUM 에 나중에 늘어난 값이 빠져 있으면 확장한다.
+ * @param {import('mysql2/promise').Pool} pool
+ * @returns {Promise<void>}
+ */
 async function ensureRaffleNftSourceEnum(pool) {
   const [columns] = await pool.query(`SHOW COLUMNS FROM raffle_nfts LIKE 'source'`);
   const type = String(columns[0]?.Type || '');
@@ -62,6 +94,11 @@ async function ensureRaffleNftSourceEnum(pool) {
   }
 }
 
+/**
+ * 실물 교환 신청 테이블이 없으면 만든다.
+ * @param {import('mysql2/promise').Pool} pool
+ * @returns {Promise<void>}
+ */
 async function ensurePhysicalRedemptionTable(pool) {
   await pool.query(`
     CREATE TABLE IF NOT EXISTS physical_redemption_requests (
@@ -83,6 +120,11 @@ async function ensurePhysicalRedemptionTable(pool) {
   `);
 }
 
+/**
+ * 위 보정들을 한 번에 실행한다. 프로세스당 1회만 동작한다.
+ * @param {import('mysql2/promise').Pool} pool
+ * @returns {Promise<void>}
+ */
 async function ensureRuntimeSchema(pool) {
   if (runtimeSchemaReady) return;
   await ensureUsersRuntimeColumns(pool);

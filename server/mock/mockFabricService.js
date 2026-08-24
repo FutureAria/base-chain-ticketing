@@ -102,7 +102,7 @@ async function registerTicket({ ticketId, tokenId, gameId, seatId, walletAddress
 }
 
 // ─── 2. VerifyEntry ────────────────────────────────────────
-async function verifyEntry({ ticketId, tokenId, walletAddress, gateId }) {
+async function verifyEntry({ ticketId, tokenId, walletAddress: _walletAddress, gateId }) {
   const ticket = _store.tickets[ticketId];
 
   if (!ticket) {
@@ -213,9 +213,6 @@ async function _earnPointByEntry(userDidHash, price) {
 }
 
 // 외부에서도 호출 가능
-async function earnPointByEntry({ userDidHash, price }) {
-  return _earnPointByEntry(userDidHash, price);
-}
 
 // ─── 4. UpdateMembershipGrade (내부 호출용) ───────────────
 async function _updateMembershipGrade(userDidHash) {
@@ -229,9 +226,6 @@ async function _updateMembershipGrade(userDidHash) {
   return { grade: membership.grade, entryCount: membership.entryCount };
 }
 
-async function updateMembershipGrade({ userDidHash }) {
-  return _updateMembershipGrade(userDidHash);
-}
 
 // ─── 5. UsePointForTicket ──────────────────────────────────
 async function usePointForTicket({ userDidHash, ticketId, pointAmount }) {
@@ -266,6 +260,13 @@ async function usePointForTicket({ userDidHash, ticketId, pointAmount }) {
 }
 
 // ─── 5-b. RestorePointForRefund ────────────────────────────
+// ⚠️ 아직 어디에서도 호출되지 않는다.
+// 환불 시 사용한 포인트를 되돌리는 구현이지만, 환불 라우터가 이 함수를 부르지 않고
+// 실제 fabricService 와 Go 체인코드에도 대응 함수가 없다.
+// 즉 현재는 "환불해도 사용 포인트가 복구되지 않는" 상태다.
+// 지우지 않고 남겨 두는 이유 — 복구 규칙(잔액·totalUsed·ticket.pointUsed 를 함께 되돌린다)이
+// 여기 적혀 있고, 연결할 때 그대로 쓸 수 있기 때문이다.
+// eslint-disable-next-line no-unused-vars -- 미연결 구현. 연결 작업은 이슈로 추적한다.
 async function restorePointForRefund({ userDidHash, ticketId, pointAmount }) {
   if (!pointAmount || pointAmount <= 0) return { success: true, remainingBalance: 0 };
   const point = _getOrCreatePoint(userDidHash);
@@ -379,7 +380,7 @@ function calcRefundRate(gameDateStr, purchaseType) {
 }
 
 // ─── 7. RequestRefund ──────────────────────────────────────
-async function requestRefund({ ticketId, walletAddress, refundReason, gameDateStr, purchaseType }) {
+async function requestRefund({ ticketId, walletAddress: _walletAddress, refundReason, gameDateStr, purchaseType }) {
   const ticket = _store.tickets[ticketId];
 
   if (!ticket) throw new Error('TICKET_NOT_FOUND');
@@ -488,7 +489,7 @@ async function cancelGameRefundAll({ gameId }) {
 }
 
 // ─── 10. CreateSettlement ──────────────────────────────────
-async function createSettlement({ gameId, pool }) {
+async function createSettlement({ gameId, pool: _pool }) {
   const tickets = Object.values(_store.tickets).filter(t => t.gameId === gameId);
 
   const totalSales      = tickets.filter(t => t.status !== 'REFUNDED').reduce((s, t) => s + t.price, 0);
@@ -539,7 +540,7 @@ async function transferTicket({ ticketId, fromWalletAddress, toWalletAddress, tr
     success: true,
     txId: `mock-tx-${uuidv4().slice(0, 8)}`,
     ticketId,
-    fromDidHash: hashDid(fromWalletAddress),
+    fromDidHash,
     toDidHash: hashDid(toWalletAddress),
     transferPrice,
     sellerEarnedPoint: earnedPoint,

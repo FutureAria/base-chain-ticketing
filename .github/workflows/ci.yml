@@ -9,7 +9,7 @@ on:
 
 jobs:
   backend:
-    name: 백엔드 테스트
+    name: 백엔드 린트·테스트
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -19,6 +19,9 @@ jobs:
       - name: 의존성 설치
         working-directory: server
         run: npm install --no-audit --no-fund
+      - name: 린트
+        working-directory: server
+        run: npm run lint
       - name: 테스트 실행
         working-directory: server
         # DB가 없는 CI에서는 동시성 테스트가 자동으로 건너뛰어진다 (75 pass / 8 skip).
@@ -33,7 +36,7 @@ jobs:
         run: npm test
 
   frontend:
-    name: 프론트엔드 타입체크·빌드
+    name: 프론트엔드 린트·타입체크·빌드
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -43,6 +46,9 @@ jobs:
       - name: 의존성 설치
         working-directory: Proje
         run: npm install --no-audit --no-fund
+      - name: 린트
+        working-directory: Proje
+        run: npm run lint
       - name: 타입 검사
         working-directory: Proje
         run: npm run typecheck
