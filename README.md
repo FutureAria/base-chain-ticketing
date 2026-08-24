@@ -12,6 +12,8 @@
 [![Live Demo](https://img.shields.io/badge/🔗_Live_Demo-juyoung--basechain.duckdns.org-2ea44f?style=for-the-badge)](https://juyoung-basechain.duckdns.org)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
+[![CI](https://github.com/FutureAria/base-chain-ticketing/actions/workflows/ci.yml/badge.svg)](https://github.com/FutureAria/base-chain-ticketing/actions/workflows/ci.yml)
+
 ![Backend Tests](https://img.shields.io/badge/backend_tests-83_passed-brightgreen?style=flat-square&logo=nodedotjs&logoColor=white)
 ![Contract Tests](https://img.shields.io/badge/contract_tests-18_passed-brightgreen?style=flat-square&logo=solidity&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typecheck-0_errors-brightgreen?style=flat-square&logo=typescript&logoColor=white)
