@@ -27,9 +27,6 @@ function createTokenId(prefix) {
   return `${prefix}-${crypto.randomBytes(9).toString('hex').toUpperCase()}`;
 }
 
-function createTxHash() {
-  return `0x${crypto.randomBytes(32).toString('hex')}`;
-}
 
 async function getWalletAddress(userId) {
   const [[wallet]] = await _pool.query(

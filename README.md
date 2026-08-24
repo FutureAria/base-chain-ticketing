@@ -13,6 +13,8 @@
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
 [![CI](https://github.com/FutureAria/base-chain-ticketing/actions/workflows/ci.yml/badge.svg)](https://github.com/FutureAria/base-chain-ticketing/actions/workflows/ci.yml)
+[![good first issues](https://img.shields.io/github/issues/FutureAria/base-chain-ticketing/good%20first%20issue?label=good%20first%20issue&color=7057ff)](https://github.com/FutureAria/base-chain-ticketing/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ![Backend Tests](https://img.shields.io/badge/backend_tests-83_passed-brightgreen?style=flat-square&logo=nodedotjs&logoColor=white)
 ![Contract Tests](https://img.shields.io/badge/contract_tests-18_passed-brightgreen?style=flat-square&logo=solidity&logoColor=white)
@@ -47,10 +49,10 @@
 
 | | | |
 |---|---|---|
-| [🌿 브랜치 구성](#-브랜치-구성) | [✨ 핵심 기능](#-핵심-기능) | [🏗 아키텍처](#-아키텍처) |
-| [🚀 빠른 시작](#-빠른-시작) | [🔑 환경변수](#-환경변수) | [🧪 테스트](#-테스트) |
-| [🛡 설계에서 신경 쓴 부분](#-설계에서-신경-쓴-부분) | [⚠️ 현재 한계](#️-현재-한계) | [📂 디렉터리 구조](#-디렉터리-구조) |
-| [👥 팀](#-팀) | [📜 라이선스](#-라이선스) | |
+| [🌿 브랜치 구성](#-브랜치-구성) | [📚 문서](#-문서) | [✨ 핵심 기능](#-핵심-기능) |
+| [🏗 아키텍처](#-아키텍처) | [🚀 빠른 시작](#-빠른-시작) | [🔑 환경변수](#-환경변수) |
+| [🧪 테스트](#-테스트) | [🛡 설계에서 신경 쓴 부분](#-설계에서-신경-쓴-부분) | [⚠️ 현재 한계](#️-현재-한계) |
+| [📂 디렉터리 구조](#-디렉터리-구조) | [🤝 기여하기](#-기여하기) | [👥 팀](#-팀) |
 
 ---
 
@@ -112,6 +114,28 @@ git switch blockchain && cat blockchain/README.md
 ```
 
 </details>
+
+---
+
+## 📚 문서
+
+무엇이 궁금한지에 따라 갈라집니다.
+
+| 알고 싶은 것 | 문서 |
+|---|---|
+| **왜 블록체인 프로젝트인데 좌석을 DB가 확정하나** | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — 신뢰 경계, 티켓 상태 기계, 좌석 잠금 원리 |
+| **어떤 API 가 있나** | [`docs/API.md`](docs/API.md) — 엔드포인트 89개, 인증 등급 |
+| **어떤 테이블이 있나** | [`docs/DATABASE.md`](docs/DATABASE.md) — 테이블 40개, 상태 ENUM 10종 |
+| **개발 환경이 안 뜬다** | [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) — 셋업과 **자주 막히는 곳 9건** |
+| **왜 이 기술을 골랐나** | [`docs/TECH-DECISIONS.md`](docs/TECH-DECISIONS.md) — 결정 10건의 대안·이유·**대가** |
+| **어떻게 협업했나** | [`docs/COLLABORATION.md`](docs/COLLABORATION.md) — 팀 이력, 관리 체계, 부족했던 점 |
+| **브랜치·커밋 규칙** | [`docs/BRANCHES.md`](docs/BRANCHES.md) |
+| **배포 절차** | [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) · [`docs/ORACLE_DEMO_DEPLOYMENT.md`](docs/ORACLE_DEMO_DEPLOYMENT.md) |
+| **기여하고 싶다** | [`CONTRIBUTING.md`](CONTRIBUTING.md) · [`ROADMAP.md`](ROADMAP.md) · [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) |
+| **보안 정책·취약점 제보** | [`SECURITY.md`](SECURITY.md) |
+
+영역별 상세 문서는 각 폴더에 있습니다 —
+[`Proje/README.md`](Proje/README.md) · [`server/README.md`](server/README.md) · [`blockchain/README.md`](blockchain/README.md)
 
 ---
 
@@ -405,7 +429,7 @@ base-chain-ticketing/
 │   ├── app/lib/             지갑·컨트랙트 연동 (ethers.js)
 │   └── app/context/         인증·지갑 전역 상태
 ├── 📁 server/           백엔드 API — Express + MySQL
-│   ├── routes/              API 엔드포인트 17개
+│   ├── routes/              API 라우트 17개 · 엔드포인트 89개
 │   ├── services/            비즈니스 로직 (티켓·포인트·멤버십·결제·NFT 브리지)
 │   ├── config/              좌석 가격표 등 서버 기준값
 │   ├── db/                  스키마·마이그레이션·시드
@@ -419,6 +443,39 @@ base-chain-ticketing/
 ├── 📁 docs/             배포 가이드
 └── 📁 scripts/          제출용 ZIP 생성 (.env 유출 차단)
 ```
+
+---
+
+## 🤝 기여하기
+
+기여를 환영합니다. 저장소만 보고 첫 PR 까지 갈 수 있게 절차를 정리해 두었습니다.
+
+**처음이시라면** → [`good first issue`](https://github.com/FutureAria/base-chain-ticketing/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+
+이 라벨이 붙은 이슈는 세 가지를 보장합니다.
+
+- 고칠 **파일과 함수**가 적혀 있습니다
+- 다른 영역(블록체인·DB)을 몰라도 그 부분만 보고 고칠 수 있습니다
+- **확인 명령**이 이슈에 적혀 있습니다
+
+**환경 준비는 가볍습니다.** 고칠 곳만 띄우면 되고, Docker·Fabric 네트워크·테스트넷 지갑은
+필요 없습니다. 기본값이 mock 이라 **Node 20 + MySQL** 만 있으면 전 기능이 돕니다.
+컨트랙트 작업은 DB조차 필요 없습니다.
+
+```bash
+git clone https://github.com/FutureAria/base-chain-ticketing.git
+cd base-chain-ticketing/blockchain && npm install && npm test   # 18 passing
+```
+
+| | |
+|---|---|
+| 절차·커밋 규칙·리뷰 기준 | [`CONTRIBUTING.md`](CONTRIBUTING.md) |
+| 계획된 작업과 **하지 않기로 한 것** | [`ROADMAP.md`](ROADMAP.md) |
+| 개발 환경에서 막혔을 때 | [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) |
+| 행동 강령 | [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) |
+
+모든 PR 은 CI 4개 잡(백엔드 린트·테스트 / 프론트 린트·타입·빌드 / 컨트랙트 / **시크릿 유출 검사**)을
+통과해야 합니다.
 
 ---
 

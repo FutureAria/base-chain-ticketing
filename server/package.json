@@ -11,7 +11,9 @@
     "seed:practice-admin": "node scripts/seedPracticeAdmin.js",
     "grant:admin-demo-points": "node scripts/grantAdminDemoPoints.js",
     "grant:demo-inventory": "node scripts/grantDemoInventoryToActiveUsers.js",
-    "seed:presentation-demo-users": "node scripts/seedPresentationDemoUsers.js"
+    "seed:presentation-demo-users": "node scripts/seedPresentationDemoUsers.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "axios": "^1.16.1",
@@ -28,6 +30,8 @@
     "uuid": "^13.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "eslint": "^9.0.0",
+    "@eslint/js": "^9.0.0"
   }
 }

@@ -20,7 +20,6 @@ import { useNavigate, useParams, useSearchParams } from "react-router";
 import { Button } from "../components/ui/button";
 import {
   buildEventFromApiGame,
-  createStoredTickets,
   getTicketEvent,
   loadStoredTickets,
   seatTicketTypes,
@@ -184,7 +183,6 @@ export function TicketBooking() {
   const [ticketTypesBySeat, setTicketTypesBySeat] = useState<Record<string, SeatTicketTypeId>>({});
   const [storedTickets, setStoredTickets] = useState<StoredTicketRecord[]>(() => loadStoredTickets());
   const [serverTakenSeats, setServerTakenSeats] = useState<Set<string>>(new Set());
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [paymentWidgets, setPaymentWidgets] = useState<any>(null);
   const [widgetReady, setWidgetReady] = useState(false);
   const [widgetError, setWidgetError] = useState<string | null>(null);

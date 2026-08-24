@@ -15,7 +15,7 @@ if (!PRACTICE_ADMIN_PASSWORD) {
   console.error(
     '[seed:practice-admin] PRACTICE_ADMIN_PASSWORD 가 설정되지 않아 중단합니다.\n' +
     '  이 스크립트는 관리자 권한 계정을 생성하므로 비밀번호를 직접 지정해야 합니다.\n' +
-    '  예: PRACTICE_ADMIN_PASSWORD="$(node -e \"console.log(require(\'crypto\').randomBytes(16).toString(\'hex\'))\")" npm run seed:practice-admin',
+    '  예: PRACTICE_ADMIN_PASSWORD="$(node -e "console.log(require(\'crypto\').randomBytes(16).toString(\'hex\'))")" npm run seed:practice-admin',
   );
   process.exit(1);
 }

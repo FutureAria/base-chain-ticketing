@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Coins, Sparkles, X, TrendingUp, User, Calendar, ArrowLeft } from "lucide-react";
+import { Coins, Sparkles, X, ArrowLeft } from "lucide-react";
 import { Card } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { motion, AnimatePresence } from "motion/react";
@@ -160,7 +160,6 @@ export function MemeInfo() {
         <h2 className="mb-6 text-center text-[#e0d9ff] neon-pink">인기 밈 코인</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {memeCoins.map((meme) => {
-            const isPositive = meme.change.startsWith("+");
             if (meme.isLegendary) {
               // ── WHAT THE HO legendary card ──
               return (

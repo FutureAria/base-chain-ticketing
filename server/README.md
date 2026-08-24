@@ -26,7 +26,7 @@ cp .env.example .env      # 값을 채운 뒤
 npm start                 # http://localhost:4000
 ```
 
-첫 실행 시 데이터베이스·테이블 **41개**·시드 데이터가 자동 생성됩니다 (`db/init.js`).
+첫 실행 시 데이터베이스·테이블 **40개**·시드 데이터가 자동 생성됩니다 (`db/init.js`).
 
 | 명령 | 하는 일 |
 |---|---|
@@ -54,7 +54,7 @@ npm start                 # http://localhost:4000
 ```
 server/
 ├── index.js          앱 부팅 · 라우트 마운트 · 전역 에러 핸들러
-├── routes/           API 엔드포인트 17개
+├── routes/           API 라우트 17개 · 엔드포인트 89개
 ├── services/         비즈니스 로직
 │   ├── ticketService.js          예매·좌석 확보·환불 (핵심)
 │   ├── tossPayService.js         결제 승인·취소 (mock/real 게이트)
@@ -64,7 +64,7 @@ server/
 │   ├── onchainPaymentService.js  온체인 결제 검증
 │   └── schemaGuardService.js     스키마 드리프트 감지
 ├── config/seatPricing.js   좌석 가격표 — 결제 금액의 최종 기준
-├── db/                     init.js(테이블 41개 생성·시드), schema.sql
+├── db/                     init.js(테이블 40개 생성·시드), schema.sql
 ├── middleware/auth.js      JWT 검증 · 관리자 권한
 ├── mock/                   Fabric · NFT 브리지 인메모리 mock
 └── tests/                  테스트 83개

@@ -70,6 +70,7 @@ router.get('/', async (req, res) => {
     );
     res.json(rows);
   } catch (error) {
+    console.error('[notice] 공지 조회 실패:', error);
     res.status(500).json({ error: '조회 실패' });
   }
 });
@@ -83,6 +84,7 @@ router.delete('/', requireAuth, requireAdmin, async (req, res) => {
     rows.forEach((row) => removeUploadedImage(row.image_url));
     res.json({ message: '모든 공지가 삭제되었습니다.' });
   } catch (error) {
+    console.error('[notice] 공지 전체 삭제 실패:', error);
     res.status(500).json({ error: '전체 삭제 실패' });
   }
 });
@@ -98,6 +100,7 @@ router.post('/', requireAuth, requireAdmin, upload.single('image'), async (req, 
     );
     res.status(201).json({ message: '등록 완료' });
   } catch (error) {
+    console.error('[notice] 공지 등록 실패:', error);
     res.status(500).json({ error: '등록 실패' });
   }
 });
@@ -119,6 +122,7 @@ router.put('/:id', requireAuth, requireAdmin, upload.single('image'), async (req
     }
     res.json({ message: '수정 완료' });
   } catch (error) {
+    console.error('[notice] 공지 수정 실패:', error);
     res.status(500).json({ error: '수정 실패' });
   }
 });
@@ -131,6 +135,7 @@ router.delete('/:id', requireAuth, requireAdmin, async (req, res) => {
     removeUploadedImage(existing?.image_url);
     res.json({ message: '삭제 완료' });
   } catch (error) {
+    console.error('[notice] 공지 삭제 실패:', error);
     res.status(500).json({ error: '삭제 실패' });
   }
 });

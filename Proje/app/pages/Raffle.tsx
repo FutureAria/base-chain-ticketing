@@ -7,11 +7,9 @@ import {
   Check,
   CheckCircle2,
   ChevronDown,
-  Clock,
   Gift,
   Loader2,
   Ticket,
-  Trophy,
   Wallet,
   X,
 } from "lucide-react";
