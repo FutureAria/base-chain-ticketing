@@ -23,7 +23,7 @@
 ```mermaid
 flowchart TB
     subgraph client["클라이언트"]
-        B["React SPA<br/>화면 32개"]
+        B["React SPA<br/>화면 29개"]
         W["MetaMask<br/>(선택)"]
     end
     subgraph edge["엣지"]
@@ -257,7 +257,7 @@ flowchart LR
 ```
 Proje/app/
 ├── routes.tsx       라우팅 정의
-├── pages/           화면 32개
+├── pages/           화면 29개
 ├── components/      Layout · QRScanner · AdminOnly · LegendaryReveal · ui/
 ├── context/         AuthContext(로그인) · AppSettingsContext
 ├── hooks/           useTicketQR(회전 QR) · useBookingAccess(예매 권한)
