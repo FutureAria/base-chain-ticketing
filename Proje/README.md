@@ -49,7 +49,7 @@ npm run dev          # http://localhost:5173
 ```
 Proje/
 ├── app/
-│   ├── pages/        화면 32개 — 예매·마이티켓·장터·응모·교환·검표·관리자
+│   ├── pages/        화면 29개 — 예매·마이티켓·장터·응모·교환·검표·관리자
 │   ├── components/   Layout, QRScanner, AdminOnly, LegendaryReveal, ui/
 │   ├── context/      AuthContext(로그인 상태), AppSettingsContext
 │   ├── hooks/        useTicketQR(회전 QR), useBookingAccess(예매 권한)
