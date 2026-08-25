@@ -49,11 +49,46 @@
 
 | | | |
 |---|---|---|
-| [🌿 브랜치 구성](#-브랜치-구성) | [📚 문서](#-문서) | [✨ 핵심 기능](#-핵심-기능) |
+| [🖼 화면](#-화면) | [🌿 브랜치 구성](#-브랜치-구성) | [📚 문서](#-문서) |
+| [✨ 핵심 기능](#-핵심-기능) | | |
 | [🏗 아키텍처](#-아키텍처) | [🚀 빠른 시작](#-빠른-시작) | [🔑 환경변수](#-환경변수) |
 | [🧪 테스트](#-테스트) | [🛡 설계에서 신경 쓴 부분](#-설계에서-신경-쓴-부분) | [⚠️ 현재 한계](#️-현재-한계) |
 | [📂 디렉터리 구조](#-디렉터리-구조) | [🤝 기여하기](#-기여하기) | [🤖 AI 보조도구 활용](#-ai-보조도구-활용) |
 | [👥 팀](#-팀) | [📜 라이선스](#-라이선스) | |
+
+---
+
+## 🖼 화면
+
+<table>
+<tr>
+<td width="50%"><img src="docs/screenshots/01-home.png" alt="메인 화면"/></td>
+<td width="50%"><img src="docs/screenshots/02-tickets.png" alt="경기 예매"/></td>
+</tr>
+<tr>
+<td align="center"><b>메인</b><br/><sub>다음 경기·발급 입장권 현황·지갑 연결 안내</sub></td>
+<td align="center"><b>경기 예매</b><br/><sub>구단·구장 필터, 경기별 예매 상태와 최저가</sub></td>
+</tr>
+<tr>
+<td><img src="docs/screenshots/03-market.png" alt="파편 장터"/></td>
+<td><img src="docs/screenshots/05-collection.png" alt="시즌 컬렉션"/></td>
+</tr>
+<tr>
+<td align="center"><b>파편 장터</b><br/><sub>구단별 굿즈 조각 매물, 판매자별 등록가 비교</sub></td>
+<td align="center"><b>시즌 컬렉션</b><br/><sub>수집한 팬 자산과 획득 칭호</sub></td>
+</tr>
+<tr>
+<td><img src="docs/screenshots/04-combine.png" alt="카드 조합"/></td>
+<td><img src="docs/screenshots/06-community.png" alt="커뮤니티"/></td>
+</tr>
+<tr>
+<td align="center"><b>카드 조합</b><br/><sub>조각 합성으로 카드 NFT 발급</sub></td>
+<td align="center"><b>커뮤니티</b><br/><sub>티켓·파편·야구·전략 게시판</sub></td>
+</tr>
+</table>
+
+> 로컬 실행 화면입니다(`TOSS_MODE=mock` · `FABRIC_MODE=mock`). 동작하는 데모는 위 **Live Demo** 배지에서 확인할 수 있습니다.
+> 예매 상태가 "마감"인 것은 로컬 시드 데이터의 경기 일정이 지난 날짜이기 때문입니다.
 
 ---
 
@@ -503,6 +538,7 @@ cd base-chain-ticketing/blockchain && npm install && npm test   # 18 passing
 |---|---|
 | **한승우** | 메인 페이지, 커뮤니티, 프로젝트 총괄 |
 | **박주영** | 예매·결제 흐름, 백엔드 API 통합, Oracle 배포·운영, 보안·안정성 보완 |
+| **김상윤** | 블록체인 |
 
 **개발 기간** 2026.03 ~ 2026.05 (이후 보안·안정성 보완 2026.08)
 
