@@ -1,6 +1,17 @@
 {
   "name": "ticketblockchain-server",
   "version": "1.0.0",
+  "description": "BASE CHAIN 백엔드 API — 예매·결제·포인트·NFT 브리지 (Express + MySQL)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FutureAria/base-chain-ticketing.git",
+    "directory": "server"
+  },
+  "homepage": "https://github.com/FutureAria/base-chain-ticketing#readme",
+  "bugs": {
+    "url": "https://github.com/FutureAria/base-chain-ticketing/issues"
+  },
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
