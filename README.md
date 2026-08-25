@@ -101,7 +101,7 @@
 |---|---|---|---|
 | **`main`** | 배포·제출 기준 | 전체 코드 + 이 README | — |
 | **`develop`** | 통합 브랜치 | 작업 브랜치들이 합쳐지는 곳 | — |
-| **`frontend`** | 화면·상태 관리 | `Proje/` React SPA (페이지 32개) | [`Proje/README.md`](../../blob/frontend/Proje/README.md) |
+| **`frontend`** | 화면·상태 관리 | `Proje/` React SPA (페이지 29개) | [`Proje/README.md`](../../blob/frontend/Proje/README.md) |
 | **`backend`** | API·DB·결제 | `server/` Express + MySQL (라우트 17개) | [`server/README.md`](../../blob/backend/server/README.md) |
 | **`blockchain`** | 컨트랙트·체인코드 | `blockchain/` Solidity, `fabric/` Go 체인코드 | [`blockchain/README.md`](../../blob/blockchain/blockchain/README.md) |
 
@@ -460,7 +460,7 @@ MetaMask 없이도 재판매 등록이 되도록 서명 검증을 건너뛰는 �
 ```
 base-chain-ticketing/
 ├── 📁 Proje/            프론트엔드 — React 19 + Vite + TypeScript
-│   ├── app/pages/           화면 32개 (예매·마이티켓·장터·응모·교환·검표)
+│   ├── app/pages/           화면 29개 (예매·마이티켓·장터·응모·교환·검표)
 │   ├── app/data/            구장·좌석 등급 정의 (가격의 프론트 원본)
 │   ├── app/lib/             지갑·컨트랙트 연동 (ethers.js)
 │   └── app/context/         인증·지갑 전역 상태

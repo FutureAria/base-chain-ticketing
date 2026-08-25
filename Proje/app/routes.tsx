@@ -23,9 +23,7 @@ const TicketResale        = lazy(() => import("./pages/TicketResale").then((m) =
 const TicketResaleSuccess = lazy(() => import("./pages/TicketResaleSuccess").then((m) => ({ default: m.TicketResaleSuccess })));
 const MarketBuySuccess    = lazy(() => import("./pages/MarketBuySuccess").then((m) => ({ default: m.MarketBuySuccess })));
 const Collection     = lazy(() => import("./pages/Collection").then((m) => ({ default: m.Collection })));
-const MemeInfo       = lazy(() => import("./pages/MemeInfo").then((m) => ({ default: m.MemeInfo })));
 const Attendance     = lazy(() => import("./pages/Attendance").then((m) => ({ default: m.Attendance })));
-const Detail         = lazy(() => import("./pages/Detail").then((m) => ({ default: m.Detail })));
 const Exchange       = lazy(() => import("./pages/Exchange").then((m) => ({ default: m.Exchange })));
 const PhysicalExchange = lazy(() => import("./pages/PhysicalExchange").then((m) => ({ default: m.PhysicalExchange })));
 const EntryScanner   = lazy(() => import("./pages/EntryScanner").then((m) => ({ default: m.EntryScanner })));
@@ -92,9 +90,7 @@ export const router = createBrowserRouter([
       { path: "market/buy/success",          Component: withSuspense(TicketResaleSuccess) },
       { path: "market/fragment/buy/success", Component: withSuspense(MarketBuySuccess) },
       { path: "collection",               Component: withSuspense(Collection) },
-      { path: "meme-info",                Component: withSuspense(MemeInfo) },
       { path: "attendance",               Component: withSuspense(Attendance) },
-      { path: "detail/:id",               Component: withSuspense(Detail) },
       { path: "exchange",                  Component: withSuspense(Exchange) },
       { path: "physical-exchange",         Component: withSuspense(PhysicalExchange) },
       { path: "entry-scanner",             Component: withAdminSuspense(EntryScanner, "QR 검표는 관리자 전용입니다") },

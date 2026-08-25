@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Book, Lock, Star, Award, Trophy, Crown, Zap } from "lucide-react";
 import { Card } from "../components/ui/card";
 
-interface Meme {
+interface FanAsset {
   id: number;
   name: string;
   image: string;
@@ -22,9 +22,9 @@ interface Title {
 }
 
 export function Collection() {
-  const [selectedTab, setSelectedTab] = useState<"memes" | "titles">("memes");
+  const [selectedTab, setSelectedTab] = useState<"assets" | "titles">("assets");
 
-  const memes: Meme[] = [
+  const fanAssets: FanAsset[] = [
     { id: 1, name: "개막전 홈런볼 카드", image: "⚾", collected: true, count: 2 },
     { id: 2, name: "승리 세리머니 카드", image: "🙌", collected: true, count: 1 },
     { id: 3, name: "원정 포토카드 #999", image: "📷", collected: true, count: 3 },
@@ -134,8 +134,8 @@ export function Collection() {
     }
   };
 
-  const collectedCount = memes.filter(m => m.collected).length;
-  const totalCount = memes.length;
+  const collectedCount = fanAssets.filter(a => a.collected).length;
+  const totalCount = fanAssets.length;
   const obtainedTitlesCount = titles.filter(t => t.obtained).length;
   const totalTitlesCount = titles.length;
 
@@ -180,9 +180,9 @@ export function Collection() {
       {/* Tabs */}
       <div className="flex gap-2 p-1.5 rounded-2xl neon-border-pink panel-surface">
         <button
-          onClick={() => setSelectedTab("memes")}
+          onClick={() => setSelectedTab("assets")}
           className={`flex-1 px-4 py-3 rounded-xl font-medium transition-all ${
-            selectedTab === "memes"
+            selectedTab === "assets"
               ? "bg-gradient-to-r from-[#00d9ff]/30 to-[#0088cc]/30 text-[#00d9ff] neon-border-cyan"
               : "text-[#a393d1] hover:text-[#00d9ff]"
           }`}
@@ -201,22 +201,22 @@ export function Collection() {
         </button>
       </div>
 
-      {/* Memes Grid */}
-      {selectedTab === "memes" && (
+      {/* 팬 자산 그리드 */}
+      {selectedTab === "assets" && (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {memes.map((meme, index) => (
+          {fanAssets.map((asset, index) => (
             <motion.div
-              key={meme.id}
+              key={asset.id}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: index * 0.05 }}
           >
               <Card className={`p-4 transition-all relative overflow-hidden panel-surface ${
-                meme.collected 
+                asset.collected 
                   ? "neon-border-cyan hover:neon-border-pink cursor-pointer group" 
                   : "opacity-60 neon-border-pink"
               }`}>
-                {!meme.collected && (
+                {!asset.collected && (
                   <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-10">
                     <div className="text-center">
                       <Lock className="w-8 h-8 mx-auto mb-2 text-[#a393d1]" />
@@ -226,18 +226,18 @@ export function Collection() {
                 )}
                 
                 <div className={`aspect-square rounded-lg glass-strong mb-3 flex items-center justify-center text-6xl relative overflow-hidden ${
-                  meme.collected ? "group-hover:scale-110" : ""
+                  asset.collected ? "group-hover:scale-110" : ""
                 } transition-transform`}>
-                  <span style={{ filter: meme.collected ? "none" : "grayscale(100%)" }}>
-                    {meme.image}
+                  <span style={{ filter: asset.collected ? "none" : "grayscale(100%)" }}>
+                    {asset.image}
                   </span>
                 </div>
 
-                <h3 className="text-[0.95rem] font-semibold mb-2 text-[#f6f2ff] truncate">{meme.name}</h3>
+                <h3 className="text-[0.95rem] font-semibold mb-2 text-[#f6f2ff] truncate">{asset.name}</h3>
 
                 <div className="flex items-center justify-end">
-                  {meme.collected && meme.count && (
-                    <span className="text-xs text-[#00d9ff] font-bold">×{meme.count}</span>
+                  {asset.collected && asset.count && (
+                    <span className="text-xs text-[#00d9ff] font-bold">×{asset.count}</span>
                   )}
                 </div>
               </Card>
