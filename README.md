@@ -128,7 +128,7 @@ git switch blockchain && cat blockchain/README.md
 | **어떤 테이블이 있나** | [`docs/DATABASE.md`](docs/DATABASE.md) — 테이블 40개, 상태 ENUM 10종 |
 | **개발 환경이 안 뜬다** | [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) — 셋업과 **자주 막히는 곳 9건** |
 | **왜 이 기술을 골랐나** | [`docs/TECH-DECISIONS.md`](docs/TECH-DECISIONS.md) — 결정 10건의 대안·이유·**대가** |
-| **어떻게 협업했나** | [`docs/COLLABORATION.md`](docs/COLLABORATION.md) — 팀 이력, 관리 체계, 부족했던 점 |
+| **어떻게 협업했나** | [`docs/COLLABORATION.md`](docs/COLLABORATION.md) — 팀 이력, 관리 체계, 부족했던 점, **AI 보조도구 활용 내역** |
 | **브랜치·커밋 규칙** | [`docs/BRANCHES.md`](docs/BRANCHES.md) |
 | **배포 절차** | [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) · [`docs/ORACLE_DEMO_DEPLOYMENT.md`](docs/ORACLE_DEMO_DEPLOYMENT.md) |
 | **기여하고 싶다** | [`CONTRIBUTING.md`](CONTRIBUTING.md) · [`ROADMAP.md`](ROADMAP.md) · [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) |

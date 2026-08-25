@@ -2,6 +2,17 @@
   "name": "proje",
   "private": true,
   "version": "0.0.0",
+  "description": "BASE CHAIN 프론트엔드 — 예매·QR 검표·장터 화면 (React + Vite)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FutureAria/base-chain-ticketing.git",
+    "directory": "Proje"
+  },
+  "homepage": "https://github.com/FutureAria/base-chain-ticketing#readme",
+  "bugs": {
+    "url": "https://github.com/FutureAria/base-chain-ticketing/issues"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 5173",
