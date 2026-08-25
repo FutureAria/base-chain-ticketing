@@ -52,7 +52,8 @@
 | [🌿 브랜치 구성](#-브랜치-구성) | [📚 문서](#-문서) | [✨ 핵심 기능](#-핵심-기능) |
 | [🏗 아키텍처](#-아키텍처) | [🚀 빠른 시작](#-빠른-시작) | [🔑 환경변수](#-환경변수) |
 | [🧪 테스트](#-테스트) | [🛡 설계에서 신경 쓴 부분](#-설계에서-신경-쓴-부분) | [⚠️ 현재 한계](#️-현재-한계) |
-| [📂 디렉터리 구조](#-디렉터리-구조) | [🤝 기여하기](#-기여하기) | [👥 팀](#-팀) |
+| [📂 디렉터리 구조](#-디렉터리-구조) | [🤝 기여하기](#-기여하기) | [🤖 AI 보조도구 활용](#-ai-보조도구-활용) |
+| [👥 팀](#-팀) | [📜 라이선스](#-라이선스) | |
 
 ---
 
@@ -128,7 +129,7 @@ git switch blockchain && cat blockchain/README.md
 | **어떤 테이블이 있나** | [`docs/DATABASE.md`](docs/DATABASE.md) — 테이블 40개, 상태 ENUM 10종 |
 | **개발 환경이 안 뜬다** | [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) — 셋업과 **자주 막히는 곳 9건** |
 | **왜 이 기술을 골랐나** | [`docs/TECH-DECISIONS.md`](docs/TECH-DECISIONS.md) — 결정 10건의 대안·이유·**대가** |
-| **어떻게 협업했나** | [`docs/COLLABORATION.md`](docs/COLLABORATION.md) — 팀 이력, 관리 체계, 부족했던 점, **AI 보조도구 활용 내역** |
+| **어떻게 협업했나 · AI 를 얼마나 썼나** | [`docs/COLLABORATION.md`](docs/COLLABORATION.md) — 팀 이력, 관리 체계, 부족했던 점, **AI 보조도구 활용 내역(약 80%)** |
 | **브랜치·커밋 규칙** | [`docs/BRANCHES.md`](docs/BRANCHES.md) |
 | **배포 절차** | [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) · [`docs/ORACLE_DEMO_DEPLOYMENT.md`](docs/ORACLE_DEMO_DEPLOYMENT.md) |
 | **기여하고 싶다** | [`CONTRIBUTING.md`](CONTRIBUTING.md) · [`ROADMAP.md`](ROADMAP.md) · [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) |
@@ -476,6 +477,23 @@ cd base-chain-ticketing/blockchain && npm install && npm test   # 18 passing
 
 모든 PR 은 CI 4개 잡(백엔드 린트·테스트 / 프론트 린트·타입·빌드 / 컨트랙트 / **시크릿 유출 검사**)을
 통과해야 합니다.
+
+---
+
+## 🤖 AI 보조도구 활용
+
+이 프로젝트는 **AI 보조도구를 폭넓게 사용해 개발했습니다** — 전체 코드의 약 80% 수준.
+프롬프트로 명세를 쓰고 AI 가 구현한 뒤 사람이 검증·통합하는 방식으로 진행했습니다.
+
+**사람이 결정하고 책임진 것** — 문제 정의와 기획, 아키텍처 판단
+(좌석 확정을 블록체인이 아니라 **MySQL 유니크 제약에 맡긴 결정**,
+포인트를 이벤트로만 관리하는 설계, 실결제·온체인 기본 비활성),
+흩어진 5개 브랜치의 통합, 테스트 실행과 결과 판정, Oracle 배포·운영, 보안 결함 판정.
+
+누가 썼든 **동작과 안전성은 기계로 확인합니다** — CI 4개 잡(린트 · 백엔드 83개 ·
+컨트랙트 18개 · 타입 검사 · 시크릿 유출 검사)을 통과해야 머지됩니다.
+
+상세 내역과 측정값은 [`docs/COLLABORATION.md`](docs/COLLABORATION.md#3-ai-보조도구-활용-내역).
 
 ---
 
