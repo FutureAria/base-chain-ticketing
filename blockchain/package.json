@@ -1,6 +1,17 @@
 {
   "name": "ticketblockchain-contracts",
   "version": "1.0.0",
+  "description": "BASE CHAIN 스마트 컨트랙트 — TicketNFT·Marketplace·Fragment·Box (Hardhat + Solidity)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FutureAria/base-chain-ticketing.git",
+    "directory": "blockchain"
+  },
+  "homepage": "https://github.com/FutureAria/base-chain-ticketing#readme",
+  "bugs": {
+    "url": "https://github.com/FutureAria/base-chain-ticketing/issues"
+  },
   "scripts": {
     "test": "npx hardhat test",
     "compile": "npx hardhat compile",
