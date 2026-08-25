@@ -209,8 +209,6 @@ export function Market() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars -- 미연결 UI. 이슈로 추적한다.
   const [soldOutNotice, setSoldOutNotice] = useState<{ fragmentId: string; sellerName: string; price: number } | null>(null);
   const [isPurchasing, setIsPurchasing] = useState(false);
-  // ⚠️ setSalesHistory 로 채워지지만 salesHistory 를 읽는 화면이 없다 — 판매 이력이 표시되지 않는다.
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- 미표시 데이터. 이슈로 추적한다.
   const [salesHistory, setSalesHistory] = useState<SaleHistoryItem[]>([]);
 
   const [showBuyModal, setShowBuyModal]           = useState(false);
@@ -1066,6 +1064,39 @@ export function Market() {
                     <div className="rounded-[14px] px-3 py-3" style={{ background: subtleSurface, border: `1px solid ${lineColor}` }}><p className="text-[0.7rem]" style={{ color: mutedText }}>등록 수량</p><p className="mt-1 text-[1rem] font-black" style={{ color: neutralText }}>{totalViewerListingQuantity}개</p></div>
                   </div>
                 </div>
+
+                <div className="rounded-[20px] p-4" style={panelStyle}>
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="market-eyebrow" style={{ color: mutedText }}>판매 이력</p>
+                    <span className="text-[0.72rem] font-semibold" style={{ color: mutedText }}>{salesHistory.length}건</span>
+                  </div>
+                  <div className="mt-3 max-h-[280px] space-y-2 overflow-y-auto">
+                    {salesHistory.length === 0 ? (
+                      <p className="rounded-[14px] px-3 py-4 text-[0.78rem] leading-6" style={{ background: subtleSurface, border: `1px solid ${lineColor}`, color: mutedText }}>
+                        아직 체결된 판매 이력이 없어요. 매물이 판매되면 여기에 표시됩니다.
+                      </p>
+                    ) : (
+                      salesHistory.map((sale) => (
+                        <div key={sale.id} className="rounded-[14px] px-3 py-3" style={{ background: subtleSurface, border: `1px solid ${lineColor}` }}>
+                          <div className="flex items-start justify-between gap-2">
+                            <div className="min-w-0">
+                              <p className="truncate text-[0.82rem] font-bold" style={{ color: neutralText }}>{sale.fragmentName}</p>
+                              <p className="mt-0.5 text-[0.72rem]" style={{ color: mutedText }}>{sale.idol} · {sale.quantity}개</p>
+                            </div>
+                            <div className="shrink-0 text-right">
+                              <p className="text-[0.82rem] font-black" style={{ color: priceGreen }}>{formatPrice(sale.settlementAmount ?? sale.price)}</p>
+                              <p className="mt-0.5 text-[0.68rem]" style={{ color: mutedText }}>{sale.tradedAt ? new Date(sale.tradedAt).toLocaleString() : "-"}</p>
+                            </div>
+                          </div>
+                          {sale.txHash ? (
+                            <p className="mt-2 truncate text-[0.68rem] font-mono" style={{ color: mutedText }} title={sale.txHash}>tx {sale.txHash}</p>
+                          ) : null}
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+
               </aside>
 
               <main className="space-y-5">
